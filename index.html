@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
     <!-- Navbar Start -->
     <nav class="navbar">
@@ -27,13 +28,66 @@
         <a href="#home">Home</a>
         <a href="#about">Tentang Kami</a>
         <a href="#menu">Menu</a>
+        <a href="#products">Produk</a>
         <a href="#contact">Kontak</a>
       </div>
 
       <div class="navbar-extra">
-        <a href="#" id="search"><i data-feather="search"></i></a>
-        <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
-        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+        <a href="#" id="search-button"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart-button"
+          ><i data-feather="shopping-cart"></i
+        ></a>
+        <button type="button" id="hamburger-menu">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-form">
+        <input
+          type="search"
+          name="search-box"
+          id="search-box"
+          placeholder="Cari apa nich..."
+        />
+        <label for="search-box"><i data-feather="search"></i></label>
+      </div>
+
+      <!-- Shopping Cart -->
+      <div class="shopping-cart">
+        <div class="cart-item">
+          <img
+            src="img/products/gayo-kopi.jpg"
+            alt="Aceh Gayo Wine Process - Kopi Arabica (200g)"
+          />
+          <div class="item-detail">
+            <h3>Aceh Gayo Wine Process - Kopi Arabica (200g)</h3>
+            <div class="item-price">93K</div>
+          </div>
+          <a href="#" class="remove-item"><i data-feather="trash-2"></i></a>
+        </div>
+        <div class="cart-item">
+          <img
+            src="img/products/robusta-temanggung.jpg"
+            alt="Kopi Robusta Temanggung (200g)"
+          />
+          <div class="item-detail">
+            <h3>Kopi Robusta Temanggung (200g)</h3>
+            <div class="item-price">74K</div>
+          </div>
+          <a href="#" class="remove-item"><i data-feather="trash-2"></i></a>
+        </div>
+        <div class="cart-item">
+          <img
+            src="img/products/robusta-premium.jpg"
+            alt="Full Robusta Premium House Blend - Otten Coffee (1kg)"
+          />
+          <div class="item-detail">
+            <h3>Full Robusta Premium House Blend - Otten Coffee (1kg)</h3>
+            <div class="item-price">133K</div>
+          </div>
+          <a href="#" class="remove-item"><i data-feather="trash-2"></i></a>
+        </div>
       </div>
     </nav>
     <!-- Navbar End -->
@@ -89,69 +143,168 @@
       <div class="row">
         <div class="menu-card">
           <img
-            src="img/menu-img/crema-espresso.jpg"
-            alt="Crema Espresso - Arabica Robusta (1kg)"
+            src="img/menu-img/Coffee Beans.jpg"
+            alt="Roasted Coffee Beans"
             class="menu-card-img"
           />
-          <h3 class="menu-card-title">
-            Crema Espresso - Arabica Robusta (1kg)
-          </h3>
-          <p class="menu-card-price">IDR 253K</p>
+          <h3 class="menu-card-title">Coffee Beans</h3>
+          <p class="menu-card-description">
+            Roasted Coffee Beans merupakan biji kopi yang disangrai dengan level
+            tepat sehingga karakter rasa yang tercipta lebih optimal.
+          </p>
         </div>
         <div class="menu-card">
           <img
-            src="img/menu-img/gayo-kopi.jpg"
-            alt="Aceh Gayo Wine Process - Kopi Arabica (200g)"
+            src="img/menu-img/drip coffee.jpg"
+            alt="Drip Coffee"
             class="menu-card-img"
           />
-          <h3 class="menu-card-title">
-            Aceh Gayo Wine Process - Kopi Arabica (200g)
-          </h3>
-          <p class="menu-card-price">IDR 93K</p>
+          <h3 class="menu-card-title">Drip Coffee</h3>
+          <p class="menu-card-description">
+            Drip Coffee merupakan bubuk kopi specialty yang dikemas eksklusif.
+            Kemasannya menjadi penyaring ketika disobek.
+          </p>
         </div>
         <div class="menu-card">
           <img
-            src="img/menu-img/robusta-premium.jpg"
-            alt="Full Robusta Premium House Blend - Otten Coffee (1kg)"
+            src="img/menu-img/Cold Brew.jpg"
+            alt="Cold Brew"
             class="menu-card-img"
           />
-          <h3 class="menu-card-title">
-            Full Robusta Premium House Blend - Otten Coffee (1kg)
-          </h3>
-          <p class="menu-card-price">IDR 133K</p>
+          <h3 class="menu-card-title">Cold Brew</h3>
+          <p class="menu-card-description">
+            Bubuk kopi segar kami digiling sesuai rekomendasi terbaik ekstraksi
+            kopi cold brew, dimasukkan ke kantung penyeduhan dan memiliki
+            kemasan kedap udara.
+          </p>
         </div>
         <div class="menu-card">
           <img
-            src="img/menu-img/robusta-temanggung.jpg"
-            alt="Kopi Robusta Temanggung (200g)"
+            src="img/menu-img/kopi luwak.jpg"
+            alt="Kopi Luwak"
             class="menu-card-img"
           />
-          <h3 class="menu-card-title">Kopi Robusta Temanggung (200g)</h3>
-          <p class="menu-card-price">IDR 74K</p>
+          <h3 class="menu-card-title">Kopi Luwak</h3>
+          <p class="menu-card-description">
+            Kopi Luwak merupakan biji kopi yang kami sangrai teliti menggunakan
+            biji kopi asli dari pengolahan alami Luwak, sehingga hasilkan rasa
+            terbaik dan berkelas.
+          </p>
         </div>
         <div class="menu-card">
           <img
-            src="img/menu-img/robusta-premium.jpg"
-            alt="Full Robusta Premium House Blend - Otten Coffee (1kg)"
+            src="img/menu-img/green bean.jpg"
+            alt="Green Bean"
             class="menu-card-img"
           />
-          <h3 class="menu-card-title">
-            Full Robusta Premium House Blend - Otten Coffee (1kg)
-          </h3>
-          <p class="menu-card-price">IDR 133K</p>
+          <h3 class="menu-card-title">Green Bean</h3>
+          <p class="menu-card-description">
+            Green Bean merupakan biji kopi mentah yang belum disangrai, kami
+            menjualnya dalam kemasan 1kg untuk Anda, para pecinta kopi dan
+            pelaku bisnis.
+          </p>
         </div>
         <div class="menu-card">
           <img
-            src="img/menu-img/robusta-temanggung.jpg"
-            alt="Kopi Robusta Temanggung (200g)"
+            src="img/menu-img/Capsules.jpg"
+            alt="Capsules"
             class="menu-card-img"
           />
-          <h3 class="menu-card-title">Kopi Robusta Temanggung (200g)</h3>
-          <p class="menu-card-price">IDR 74K</p>
+          <h3 class="menu-card-title">Capsules</h3>
+          <p class="menu-card-description">
+            Biji kopi segar digiling dan dikemas khusus ke coffee capsules.
+            Temukan banyak variasi O10, dari arabika hingga racikan house blend
+            hanya di sini!
+          </p>
         </div>
       </div>
     </section>
     <!-- Menu Section End -->
+
+    <!-- Product Section Start -->
+    <div class="products" id="products">
+      <h2><span>Produk Unggulan</span> Kami</h2>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque rerum
+        quo, accusamus delectus exercitationem inventore.
+      </p>
+
+      <div class="row">
+        <div class="product-card">
+          <div class="product-cta">
+            <a href="#"><i data-feather="shopping-cart"></i></a>
+            <a href="#"><i data-feather="eye"></i></a>
+          </div>
+
+          <div class="product-image">
+            <img
+              src="img/products/gayo-kopi.jpg"
+              alt="Aceh Gayo Wine Process - Kopi Arabica (200g)"
+            />
+          </div>
+          <div class="product-content">
+            <h3>Aceh Gayo Wine Process - Kopi Arabica (200g)</h3>
+            <div class="product-rating">
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class=""></i>
+            </div>
+            <div class="product-price">IDR 93K <span>IDR 111K</span></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-cta">
+            <a href="#"><i data-feather="shopping-cart"></i></a>
+            <a href="#"><i data-feather="eye"></i></a>
+          </div>
+
+          <div class="product-image">
+            <img
+              src="img/products/robusta-temanggung.jpg"
+              alt="Kopi Robusta Temanggung (200g)"
+            />
+          </div>
+          <div class="product-content">
+            <h3>Kopi Robusta Temanggung (200g)</h3>
+            <div class="product-rating">
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+            </div>
+            <div class="product-price">IDR 74K <span>IDR 93K</span></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-cta">
+            <a href="#"><i data-feather="shopping-cart"></i></a>
+            <a href="#"><i data-feather="eye"></i></a>
+          </div>
+
+          <div class="product-image">
+            <img
+              src="img/products/robusta-premium.jpg"
+              alt="Full Robusta Premium House Blend - Otten Coffee (1kg)"
+            />
+          </div>
+          <div class="product-content">
+            <h3>Full Robusta Premium House Blend - Otten Coffee (1kg)</h3>
+            <div class="product-rating">
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class="star-fill"></i>
+              <i data-feather="star" class=""></i>
+            </div>
+            <div class="product-price">IDR 133K <span>IDR 150K</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Product Section End -->
 
     <!-- Contact Section Start -->
     <section id="contact" class="contact">
@@ -207,6 +360,7 @@
         <a href="#home">Beranda</a>
         <a href="#about">Tentang Kami</a>
         <a href="#menu">Menu</a>
+        <a href="#products">Produk</a>
         <a href="#contact">Kontak</a>
       </div>
 
