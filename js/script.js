@@ -49,7 +49,7 @@ itemDetailBtns.forEach(
   (btn) =>
     (btn.onclick = (e) => {
       itemDetailModal.style.display = 'flex';
-      itemDetailModal.style.alignItems = 'center';
+      itemDetailModal.style.justifyContent = 'center';
       e.preventDefault();
     })
 );
