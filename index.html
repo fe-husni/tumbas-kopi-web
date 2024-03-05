@@ -16,12 +16,21 @@
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- App.js -->
+    <script src="js/app.js"></script>
+
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
     <!-- Navbar Start -->
-    <nav class="navbar">
+    <nav class="navbar" x-data>
       <a href="#" class="navbar-logo"><span>Tumbas</span>Kopi.</a>
 
       <div class="navbar-nav">
@@ -34,9 +43,10 @@
 
       <div class="navbar-extra">
         <a href="#" id="search-button"><i data-feather="search"></i></a>
-        <a href="#" id="shopping-cart-button"
-          ><i data-feather="shopping-cart"></i
-        ></a>
+        <a href="#" id="shopping-cart-button">
+          <i data-feather="shopping-cart"></i>
+          <span class="quantity-badge" x-text="$store.cart.quantity"></span>
+        </a>
         <button type="button" id="hamburger-menu">
           <i data-feather="menu"></i>
         </button>
@@ -55,38 +65,77 @@
 
       <!-- Shopping Cart -->
       <div class="shopping-cart">
-        <div class="cart-item">
-          <img
-            src="img/products/gayo-kopi.jpg"
-            alt="Aceh Gayo Wine Process - Kopi Arabica (200g)"
-          />
-          <div class="item-detail">
-            <h3>Aceh Gayo Wine Process - Kopi Arabica (200g)</h3>
-            <div class="item-price">93K</div>
+        <template x-for="(item, index) in $store.cart.items" :key="index">
+          <div class="cart-item">
+            <img :src="`img/products/${item.img}`" :alt="item.name" />
+            <div class="item-detail">
+              <h3 x-text="item.name"></h3>
+              <div class="item-price">
+                <span x-text="rupiah(item.price)"></span> &times;
+                <button id="remove-item" @click="$store.cart.remove(item.id)">
+                  &minus;
+                </button>
+                <span x-text="item.quantity">1</span>
+                <button id="add-item" @click="$store.cart.add(item)">
+                  &plus;
+                </button>
+                &equals;
+                <span x-text="rupiah(item.total)"></span>
+              </div>
+            </div>
           </div>
-          <a href="#" class="remove-item"><i data-feather="trash-2"></i></a>
+        </template>
+
+        <h4
+          x-show="$store.cart.items.length"
+          style="text-align: center; font-size: 1.4rem"
+        >
+          Total: <span x-text="rupiah($store.cart.total)"></span>
+        </h4>
+
+        <div class="form-container" x-show="$store.cart.items.length">
+          <form action="" id="checkout-form">
+            <h3>Customer Detail</h3>
+
+            <label for="name">
+              <span>Name</span>
+              <input type="text" for="name" id="name" name="name" />
+            </label>
+
+            <label for="email">
+              <span>Email</span>
+              <input type="email" for="email" id="email" name="email" />
+            </label>
+
+            <label for="phone">
+              <span>Phone</span>
+              <input
+                type="number"
+                for="phone"
+                id="phone"
+                name="phone"
+                autocomplete="off"
+              />
+            </label>
+
+            <button
+              class="checkout-button"
+              type="submit"
+              id="checkout-button"
+              value="Checkout"
+            >
+              Checkout Now
+            </button>
+          </form>
         </div>
-        <div class="cart-item">
-          <img
-            src="img/products/robusta-temanggung.jpg"
-            alt="Kopi Robusta Temanggung (200g)"
-          />
-          <div class="item-detail">
-            <h3>Kopi Robusta Temanggung (200g)</h3>
-            <div class="item-price">74K</div>
-          </div>
-          <a href="#" class="remove-item"><i data-feather="trash-2"></i></a>
-        </div>
-        <div class="cart-item">
-          <img
-            src="img/products/robusta-premium.jpg"
-            alt="Full Robusta Premium House Blend - Otten Coffee (1kg)"
-          />
-          <div class="item-detail">
-            <h3>Full Robusta Premium House Blend - Otten Coffee (1kg)</h3>
-            <div class="item-price">133K</div>
-          </div>
-          <a href="#" class="remove-item"><i data-feather="trash-2"></i></a>
+
+        <div class="empty-cart" x-show="!$store.cart.items.length">
+          <img src="img/empty-cart.png" alt="" />
+          <h3>
+            Keranjang kamu kosong nih,<br />
+            belanja yukk!
+          </h3>
+          <a href="#products" class="cta-shopping-cart">Shop Now</a>
         </div>
       </div>
     </nav>
@@ -222,7 +271,7 @@
     <!-- Menu Section End -->
 
     <!-- Product Section Start -->
-    <div class="products" id="products">
+    <div class="products" id="products" x-data="products">
       <h2><span>Produk Unggulan</span> Kami</h2>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque rerum
@@ -230,78 +279,105 @@
       </p>
 
       <div class="row">
-        <div class="product-card">
-          <div class="product-cta">
-            <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#" class="item-detail-btn"><i data-feather="eye"></i></a>
-          </div>
-
-          <div class="product-image">
-            <img
-              src="img/products/gayo-kopi.jpg"
-              alt="Aceh Gayo Wine Process - Kopi Arabica (200g)"
-            />
-          </div>
-          <div class="product-content">
-            <h3>Aceh Gayo Wine Process - Kopi Arabica (200g)</h3>
-            <div class="product-rating">
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class=""></i>
+        <template x-for="(item, index) in items" :key="index">
+          <div class="product-card">
+            <div class="product-cta">
+              <a href="#" @click.prevent="$store.cart.add(item)">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="img/feather-sprite.svg#shopping-cart" />
+                </svg>
+              </a>
+              <a href="#" @click.prevent class="item-detail-btn">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="img/feather-sprite.svg#eye" />
+                </svg>
+              </a>
             </div>
-            <div class="product-price">IDR 93K <span>IDR 111K</span></div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-cta">
-            <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#" class="item-detail-btn"><i data-feather="eye"></i></a>
-          </div>
 
-          <div class="product-image">
-            <img
-              src="img/products/robusta-temanggung.jpg"
-              alt="Kopi Robusta Temanggung (200g)"
-            />
-          </div>
-          <div class="product-content">
-            <h3>Kopi Robusta Temanggung (200g)</h3>
-            <div class="product-rating">
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
+            <div class="product-image">
+              <img :src="`img/products/${item.img}`" :alt="item.name" />
             </div>
-            <div class="product-price">IDR 74K <span>IDR 93K</span></div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-cta">
-            <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#" class="item-detail-btn"><i data-feather="eye"></i></a>
-          </div>
-
-          <div class="product-image">
-            <img
-              src="img/products/robusta-premium.jpg"
-              alt="Full Robusta Premium House Blend - Otten Coffee (1kg)"
-            />
-          </div>
-          <div class="product-content">
-            <h3>Full Robusta Premium House Blend - Otten Coffee (1kg)</h3>
-            <div class="product-rating">
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class="star-fill"></i>
-              <i data-feather="star" class=""></i>
+            <div class="product-content">
+              <h3 x-text="item.name"></h3>
+              <div class="product-rating">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+              </div>
+              <div class="product-price">
+                <span x-text="rupiah(item.price)"></span>
+              </div>
             </div>
-            <div class="product-price">IDR 133K <span>IDR 150K</span></div>
           </div>
-        </div>
+        </template>
       </div>
     </div>
     <!-- Product Section End -->
